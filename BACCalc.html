@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <title>BAC Calculator</title>
+  </head>
+  <body>
+    <h1>BAC Calculator using Widmark's Formula</h1>
+    <h4><i>by Jory Plummer</i></h4>
+    <script type="text/javascript">
+      // Simple script for determining BAC of user at a given time
+      // Begin user prompts
+      var name = prompt("Enter your name: ");
+      var weight = +prompt("Enter your weight in lbs: ");
+      var gender = +prompt("Enter your gender constant, 0.68 if male and 0.55 if female: ");
+      var volume = +prompt("Enter amount of beverages consumed in oz: ");
+      var content = +prompt("Enter alcoholic content of beverages: ");
+      var elapsed = +prompt("Enter elapsed time since consumption in hours: ");
+      
+      // Intermediary math, have to convert alcohol consumed to G and human weight to G
+      var alcoholInG = (volume * content * 0.789);
+      var weightInG = (weight * 454);
+      
+      // BAC Calculation
+      var BAC = ((alcoholInG/(weightInG * gender))*100);
+      
+      // Safe to drink calculation
+      var safeToDrink = (BAC-(elapsed * 0.015));
+      
+      // Begin printing results, inputs first
+      
+      document.write("<h2>Inputs</h2>");
+      document.write("Name: " + name + "<br>");
+      document.write("Weight: " + weight + "<br>");
+      document.write("Gender constant: " + gender + "<br>");
+      document.write("Volume consumed: " + volume + "oz <br>");
+      document.write("Alcoholic content of beverages: " + content + "% <br>");
+      document.write("Time elapsed since last drink: " + elapsed + " hour(s) <br>");
+      
+      // Intermediary calculations
+      
+      document.write("<h2>Intermediary Calculations</h2>");
+      document.write("Alcohol consumed in grams: " + alcoholInG.toFixed(4) + "<br>");
+      document.write(name + "'s weight in grams: " + weightInG + "<br>");
+      
+      // Ending calculations
+      
+      document.write("<h2>Current BAC and Safe to Drive Levels</h2>");
+      document.write(name + "'s BAC is currently at " + BAC.toFixed(4) + "%.");
+      
+      document.write(safeToDrink);
+      
+      
+    </script>
+  </body>
+</html>
